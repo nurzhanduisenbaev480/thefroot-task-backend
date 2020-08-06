@@ -19,10 +19,13 @@ class Router
         foreach ($this->routes as $pattern => $path){
             //echo $pattern . " => ".$path."<br>";
             if (preg_match("~$pattern~", $uri)){
-                $contains = explode('/', $path);
+                $internalData = preg_replace("~$pattern~", $path, $uri);
+
+                $contains = explode('/', $internalData);
                 $controller = ucfirst($contains[0]).'Controller';
                 $action = 'action'.ucfirst($contains[1]);
-
+                $parameters = isset($contains[2]) ? $contains[2] : '';
+                //echo $parameters;
                 $controllerFile = ROOT . '/engine/controllers/'.$controller.'.php';
 
                 if (file_exists($controllerFile)){
@@ -30,7 +33,7 @@ class Router
                 }
 
                 $controllerObject = new $controller;
-                $objectAction = $controllerObject->$action();
+                $objectAction = $controllerObject->$action($parameters);
 
                 if ($objectAction != null){
                     break;

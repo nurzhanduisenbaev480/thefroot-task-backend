@@ -1,11 +1,13 @@
 <?php
+include_once ROOT . '/engine/models/Invoice.php';
 class InvoiceController
 {
-    public function __construct()
-    {
-    }
 
     public function actionIndex(){
-        echo 'Invoice Index';
+        $arr = Invoice::getInvoices();
+
+        require_once ROOT . '/engine/views/invoice/index.php';
+        return true;
     }
+
 }

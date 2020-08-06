@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #f8f9fa;
+}
+.invoice__content{
+    width: 100%;
+    padding: 1rem 0;
+}
+.invoice__action{
+    display: flex;
+    justify-content: space-between;
+}
+.form-control{
+    width: 80%;
+}
